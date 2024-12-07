@@ -1,5 +1,10 @@
 SHELL := /usr/bin/bash
 
+# Set Git user email and name
+git/config:
+	git config --global user.email "work@mageyuki.com"
+  git config --global user.name "mageyuki"
+
 # mkdir for EFS
 efs/mkdir:
 	mkdir -p /home/ssm-user/lido-charon-distributed-validator-node/.charon
