@@ -1,4 +1,20 @@
 SHELL := /usr/bin/bash
+
+# mkdir for EFS
+efs/mkdir:
+	mkdir -p /home/ssm-user/lido-charon-distributed-validator-node/.charon
+	mkdir -p /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
+
+# mount EFS for test environment
+efs/test:
+  sudo mount -t efs fs-0463479e25e708df1 /home/ssm-user/lido-charon-distributed-validator-node/.charon
+  sudo mount -t efs fs-08f1fe6c40b917caa /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
+
+# mount EFS for main environment
+efs/main:
+  sudo mount -t efs fs-0463479e25e708df1 /home/ssm-user/lido-charon-distributed-validator-node/.charon
+  sudo mount -t efs fs-08f1fe6c40b917caa /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
+
 # generate New Relic license key file
 get/license-key:
 	@echo "license_key: $(shell aws secretsmanager get-secret-value --secret-id newrelic-license-key | jq -r ".SecretString" | jq -r .NEW_RELIC_LICENSE_KEY)" > newrelic-infra.yml
