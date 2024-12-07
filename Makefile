@@ -10,15 +10,10 @@ efs/mkdir:
 	mkdir -p /home/ssm-user/lido-charon-distributed-validator-node/.charon
 	mkdir -p /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
 
-# mount EFS for test environment
-efs/test:
-  sudo mount -t efs fs-0463479e25e708df1 /home/ssm-user/lido-charon-distributed-validator-node/.charon
-  sudo mount -t efs fs-08f1fe6c40b917caa /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
-
-# mount EFS for main environment
-efs/main:
-  sudo mount -t efs fs-0463479e25e708df1 /home/ssm-user/lido-charon-distributed-validator-node/.charon
-  sudo mount -t efs fs-08f1fe6c40b917caa /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
+# mount EFS
+efs/mount:
+  sudo mount -t efs $(aws efs describe-file-systems --query "FileSystems[?Tags[?Key=='Name' && Value=='efs-obol-charon']].FileSystemId" --output text) /home/ssm-user/lido-charon-distributed-validator-node/.charon
+  sudo mount -t efs $(aws efs describe-file-systems --query "FileSystems[?Tags[?Key=='Name' && Value=='efs-obol-exitmessages']].FileSystemId" --output text) /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
 
 # generate New Relic license key file
 get/license-key:
