@@ -16,4 +16,4 @@ teku/validator/
 # Teku directory for storing logs
 teku/logs/
 # validator-ejector and lido-dv-exit  mountpoint
-exitmessages
+exitmessages/
