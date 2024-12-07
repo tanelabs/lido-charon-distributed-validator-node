@@ -7,8 +7,8 @@ git/config:
 
 # mkdir for EFS
 efs/mkdir:
-	mkdir -p /home/ssm-user/lido-charon-distributed-validator-node/.charon
-	mkdir -p /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
+  mkdir -p /home/ssm-user/lido-charon-distributed-validator-node/.charon
+  mkdir -p /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
 
 # mount EFS
 efs/mount:
