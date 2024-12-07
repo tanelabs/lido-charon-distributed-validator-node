@@ -247,8 +247,6 @@ services:
     volumes:
       - "/:/host:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    environment:
-      - NRIA_LICENSE_KEY=${NEW_RELIC_INFRASTRUCTURE_LICENSE_KEY}
     restart: unless-stopped
 
 networks:
