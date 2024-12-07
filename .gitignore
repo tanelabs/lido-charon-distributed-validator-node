@@ -17,3 +17,5 @@ teku/validator/
 teku/logs/
 # validator-ejector and lido-dv-exit  mountpoint
 exitmessages/
+# New Relic Infra agent USER_LICENSE_KEY file
+newrelic-infra.yml
