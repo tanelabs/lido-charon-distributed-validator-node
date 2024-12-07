@@ -1,8 +1,11 @@
 SHELL := /usr/bin/bash
+# generate New Relic license key file
+get/license-key:
+	@echo "license_key: $(shell aws secretsmanager get-secret-value --secret-id newrelic-license-key | jq -r ".SecretString" | jq -r .NEW_RELIC_LICENSE_KEY)" > newrelic-infra.yml
 
 # docker-compose up background
 compose/up:
-	NEW_RELIC_INFRASTRUCTURE_LICENSE_KEY=$(shell aws secretsmanager get-secret-value --secret-id newrelic-license-key | jq -r ".SecretString" | jq -r .NEW_RELIC_LICENSE_KEY) sudo docker compose up -d
+	sudo docker compose up -d
 
 # docker-compose down
 compose/down:
