@@ -236,7 +236,9 @@ services:
 
   agent:
     container_name: newrelic-infra
-    image: newrelic/infrastructure:latest
+    build:
+        context: .
+        dockerfile: newrelic-infra.dockerfile
     cap_add:
       - SYS_PTRACE
     network_mode: host
