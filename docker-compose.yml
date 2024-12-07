@@ -232,5 +232,22 @@ services:
       - LIDODVEXIT_VALIDATOR_QUERY_CHUNK_SIZE=${LIDO_DV_EXIT_VALIDATOR_QUERY_CHUNK_SIZE:-5}
     restart: unless-stopped
 
+### New Relic Infrastructure Agent
+
+  agent:
+    container_name: newrelic-infra
+    image: newrelic/infrastructure:latest
+    cap_add:
+      - SYS_PTRACE
+    network_mode: host
+    pid: host
+    privileged: true
+    volumes:
+      - "/:/host:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      - NRIA_LICENSE_KEY=${NEW_RELIC_INFRASTRUCTURE_LICENSE_KEY}
+    restart: unless-stopped
+
 networks:
   dvnode:
