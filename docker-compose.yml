@@ -158,8 +158,6 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./data/prometheus:/prometheus
     restart: unless-stopped
-    profiles:
-      - extra
 
   grafana:
     image: grafana/grafana:${GRAFANA_VERSION:-10.4.0}
@@ -174,8 +172,6 @@ services:
       - ./grafana/dashboards:/etc/dashboards
       - ./data/grafana:/var/lib/grafana
     restart: unless-stopped
-    profiles:
-      - extra
 
   loki:
     image: grafana/loki:${LOKI_VERSION:-2.8.2}
@@ -186,8 +182,6 @@ services:
       - ./loki/loki.yml:/etc/loki/loki.yml
       - ./data/loki:/opt/loki
     restart: unless-stopped
-    profiles:
-      - extra
 
   #             _ _     _       _                        _           _
   # __   ____ _| (_) __| | __ _| |_ ___  _ __       ___ (_) ___  ___| |_ ___  _ __
