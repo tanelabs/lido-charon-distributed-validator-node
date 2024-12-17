@@ -15,7 +15,9 @@ data/
 teku/validator/
 # Teku directory for storing logs
 teku/logs/
-# validator-ejector and lido-dv-exit  mountpoint
+# validator-ejector and lido-dv-exit mountpoint
 exitmessages/
 # New Relic Infra agent USER_LICENSE_KEY file
 newrelic-infra.yml
+# Prometheus config(include credentials)
+prometheus/prometheus.yml
