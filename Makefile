@@ -32,6 +32,26 @@ compose/down:
 compose/logs:
 	sudo docker compose logs -f
 
+# docker-compose logs charon
+compose/logs/charon:
+	sudo docker compose logs charon -f
+
+# docker-compose logs nethermind
+compose/logs/nethermind:
+	sudo docker compose logs nethermind -f
+
+# docker-compose logs lightnode
+compose/logs/lightnode:
+	sudo docker compose logs lightnode -f
+
+# docker-compose logs validator-ejector
+compose/logs/validator-ejector:
+	sudo docker compose logs validator-ejector -f
+
+# docker-compose logs lido-dv-exit
+compose/logs/lido-dv-exit:
+	sudo docker compose logs lido-dv-exit -f
+
 # docker-compose ps
 compose/ps:
 	sudo docker compose ps
