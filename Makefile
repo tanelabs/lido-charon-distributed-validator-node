@@ -4,6 +4,7 @@ SHELL := /usr/bin/bash
 git/config:
 	git config --global user.email "work@mageyuki.com"
 	git config --global user.name "mageyuki"
+	git config --global core.editor vim
 
 # mkdir for EFS
 efs/mkdir:
