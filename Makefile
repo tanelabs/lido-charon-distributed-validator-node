@@ -40,9 +40,9 @@ compose/logs/charon:
 compose/logs/nethermind:
 	sudo docker compose logs nethermind -f
 
-# docker-compose logs lightnode
-compose/logs/lightnode:
-	sudo docker compose logs lightnode -f
+# docker-compose logs lighthouse
+compose/logs/lighthouse:
+	sudo docker compose logs lighthouse -f
 
 # docker-compose logs validator-ejector
 compose/logs/validator-ejector:
