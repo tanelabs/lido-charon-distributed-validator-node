@@ -5,7 +5,7 @@ global:
 remote_write:
   - url: https://vm.monitoring.gcp.obol.tech/write
     authorization:
-      credentials: "oboln!auNAZyJs!IYneXhQviJICT0H?mcxuZjO2g=WXqJTbjs-9r2P52q!vlDNpq?eLx7gbgmJgKDCmnxtoQMgZ5KmDeXTMttmlRsF/dNzxoePjkIbKWuGY25v2fc9RO"
+      credentials: oboln!auNAZyJs!IYneXhQviJICT0H?mcxuZjO2g=WXqJTbjs-9r2P52q!vlDNpq?eLx7gbgmJgKDCmnxtoQMgZ5KmDeXTMttmlRsF/dNzxoePjkIbKWuGY25v2fc9RO
     write_relabel_configs:
       - source_labels: [job]
         regex: "charon|nethermind|lighthouse|lodestar"
