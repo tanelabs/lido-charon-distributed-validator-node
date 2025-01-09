@@ -44,6 +44,14 @@ compose/logs/nethermind:
 compose/logs/lighthouse:
 	sudo docker compose logs lighthouse -f
 
+# docker-compose logs grafana
+compose/logs/grafana:
+	sudo docker compose logs grafana -f
+
+# docker-compose logs prometheus
+compose/logs/grafana:
+	sudo docker compose logs prometheus -f
+
 # docker-compose logs validator-ejector
 compose/logs/validator-ejector:
 	sudo docker compose logs validator-ejector -f
