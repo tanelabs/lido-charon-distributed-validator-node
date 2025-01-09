@@ -49,7 +49,7 @@ compose/logs/grafana:
 	sudo docker compose logs grafana -f
 
 # docker-compose logs prometheus
-compose/logs/grafana:
+compose/logs/prometheus:
 	sudo docker compose logs prometheus -f
 
 # docker-compose logs validator-ejector
