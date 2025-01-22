@@ -102,6 +102,7 @@ services:
       - CHARON_LOKI_SERVICE=charon
     ports:
       - ${CHARON_PORT_P2P_TCP:-3610}:${CHARON_PORT_P2P_TCP:-3610}/tcp # P2P TCP libp2p
+      - 3620:3620/tcp # Monitoring
     networks: [dvnode]
     volumes:
       - .charon:/opt/charon/.charon
@@ -125,6 +126,8 @@ services:
       NETWORK: ${NETWORK}
       BUILDER_API_ENABLED: ${BUILDER_API_ENABLED:-true}
       BUILDER_SELECTION: ${BUILDER_SELECTION:-builderalways}
+    ports:
+      - 5064:5064/tcp # Metrics
     volumes:
       - ./lodestar/run.sh:/opt/lodestar/run.sh
       - .charon/validator_keys:/home/charon/validator_keys
@@ -223,6 +226,8 @@ services:
       - RUN_METRICS=true
       - HTTP_PORT=8989
       - DISABLE_SECURITY_DONT_USE_IN_PRODUCTION=${DISABLE_EJECTOR_SECURITY:-false}
+    ports:
+      - 8989:8989 # Metrics
 
   #  _ _     _                 _                      _ _
   # | (_) __| | ___         __| |_   __      _____  _(_) |_
