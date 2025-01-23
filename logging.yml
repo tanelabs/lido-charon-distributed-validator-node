@@ -3,9 +3,6 @@ services:
   promtail:
     image: grafana/promtail:${PROMTAIL_VERSION:-2.8.2}
     command: -config.file=/etc/promtail/config.yml
-    environment:
-      - GRAFANA_LOGS_USERNAME=${GRAFANA_LOGS_USERNAME}
-      - GRAFANA_LOGS_PASSWORD=${GRAFANA_LOGS_PASSWORD}
     volumes:
       - ./promtail/config.yml:/etc/promtail/config.yml
       - /var/run/docker.sock:/var/run/docker.sock
