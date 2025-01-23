@@ -16,13 +16,17 @@ efs/mount:
 	sudo mount -t efs $(aws efs describe-file-systems --query "FileSystems[?Tags[?Key=='Name' && Value=='efs-obol-charon']].FileSystemId" --output text) /home/ssm-user/lido-charon-distributed-validator-node/.charon
 	sudo mount -t efs $(aws efs describe-file-systems --query "FileSystems[?Tags[?Key=='Name' && Value=='efs-obol-exitmessages']].FileSystemId" --output text) /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
 
+# set credential to promtail.yml for grafana cloud
+set/promtail/credential:
+	@export GRAFANA_LOGS_USERNAME=$$(aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring --query SecretString --output text | jq -r '.GRAFANA_LOGS_USERNAME') && export GRAFANA_LOGS_PASSWORD=$$(aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring --query SecretString --output text | jq -r '.GRAFANA_LOGS_PASSWORD') && envsubst < promtail/config.yml.tmpl > prometheus/config.yml
+
 # docker-compose up background
 compose/up:
-	GRAFANA_LOGS_USERNAME=1100624  GRAFANA_LOGS_PASSWORD=$(shell aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring | jq -r ".SecretString" | jq -r .GRAFANA_LOGS_PASSWORD) sudo docker compose -f docker-compose.yml -f logging.yml up -d
+	sudo docker compose -f docker-compose.yml -f logging.yml up -d
 
 # docker-compose down
 compose/down:
-	sudo docker compose down
+	sudo docker compose -f docker-compose.yml -f logging.yml down
 
 # docker-compose logs
 compose/logs:
@@ -32,21 +36,13 @@ compose/logs:
 compose/logs/charon:
 	sudo docker compose logs charon -f
 
-# docker-compose logs nethermind
-compose/logs/nethermind:
-	sudo docker compose logs nethermind -f
-
-# docker-compose logs lighthouse
-compose/logs/lighthouse:
-	sudo docker compose logs lighthouse -f
-
-# docker-compose logs grafana
-compose/logs/grafana:
-	sudo docker compose logs grafana -f
-
 # docker-compose logs prometheus
 compose/logs/prometheus:
 	sudo docker compose logs prometheus -f
+
+# docker-compose logs prometheus
+compose/logs/promtail:
+	sudo docker compose logs -f logging.yml promtail -f
 
 # docker-compose logs validator-ejector
 compose/logs/validator-ejector:
