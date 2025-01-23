@@ -8,7 +8,7 @@ positions:
 clients:
   # - url: $CHARON_LOKI_ADDRESSES
 
-  - url: https://logs-prod-030.grafana.net//loki/api/v1/push
+  - url: https://logs-prod-030.grafana.net/loki/api/v1/push
     basic_auth:
       username: $GRAFANA_LOGS_USERNAME
       password: $GRAFANA_LOGS_PASSWORD
