@@ -18,7 +18,7 @@ efs/mount:
 
 # set credential to promtail.yml for grafana cloud
 set/promtail/credential:
-	@export GRAFANA_LOGS_USERNAME=$$(aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring --query SecretString --output text | jq -r '.GRAFANA_LOGS_USERNAME') && export GRAFANA_LOGS_PASSWORD=$$(aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring --query SecretString --output text | jq -r '.GRAFANA_LOGS_PASSWORD') && envsubst < promtail/config.yml.tmpl > prometheus/config.yml
+	@export GRAFANA_LOGS_USERNAME=$$(aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring --query SecretString --output text | jq -r '.GRAFANA_LOGS_USERNAME') && export GRAFANA_LOGS_PASSWORD=$$(aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring --query SecretString --output text | jq -r '.GRAFANA_LOGS_PASSWORD') && envsubst < promtail/config.yml.tmpl > promtail/config.yml
 
 # docker-compose up background
 compose/up:
