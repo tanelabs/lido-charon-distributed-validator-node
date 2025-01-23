@@ -10,7 +10,7 @@ clients:
 
   - url: https://logs-prod-030.grafana.net//loki/api/v1/push
     basic_auth:
-      username: '$GRAFANA_LOGS_USERNAME'
+      username: $GRAFANA_LOGS_USERNAME
       password: $GRAFANA_LOGS_PASSWORD
 
 scrape_configs:
