@@ -6,7 +6,7 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  - url: $CHARON_LOKI_ADDRESSES
+  # - url: $CHARON_LOKI_ADDRESSES
 
   - url: https://logs-prod-030.grafana.net//loki/api/v1/push
     basic_auth:
