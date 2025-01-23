@@ -18,7 +18,7 @@ efs/mount:
 
 # docker-compose up background
 compose/up:
-	sudo docker compose -f docker-compose.yml -f logging.yml up -d
+	GRAFANA_LOGS_USERNAME=1100624  GRAFANA_LOGS_PASSWORD=$(shell aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring | jq -r ".SecretString" | jq -r .GRAFANA_LOGS_PASSWORD) sudo docker compose -f docker-compose.yml -f logging.yml up -d
 
 # docker-compose down
 compose/down:
