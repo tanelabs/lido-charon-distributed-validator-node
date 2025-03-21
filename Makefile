@@ -16,10 +16,6 @@ efs/mount:
 	sudo mount -t efs $(aws efs describe-file-systems --query "FileSystems[?Tags[?Key=='Name' && Value=='efs-obol-charon']].FileSystemId" --output text) /home/ssm-user/lido-charon-distributed-validator-node/.charon
 	sudo mount -t efs $(aws efs describe-file-systems --query "FileSystems[?Tags[?Key=='Name' && Value=='efs-obol-exitmessages']].FileSystemId" --output text) /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
 
-# set credential to promtail.yml for grafana cloud
-set/promtail/credential:
-	@export GRAFANA_LOGS_USERNAME=$$(aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring --query SecretString --output text | jq -r '.GRAFANA_LOGS_USERNAME') && export GRAFANA_LOGS_PASSWORD=$$(aws secretsmanager get-secret-value --secret-id manual-input-for-monitoring --query SecretString --output text | jq -r '.GRAFANA_LOGS_PASSWORD') && envsubst < promtail/config.yml.tmpl > promtail/config.yml
-
 # docker-compose up background
 compose/up:
 	sudo docker compose -f docker-compose.yml -f logging.yml up -d
