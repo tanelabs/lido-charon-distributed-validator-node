@@ -1,3 +1,4 @@
+,PHONY: git/config efs/mkdir efs/mount prometheus/update compose/up compose/down compose/logs compose/logs/charon compose/logs/prometheus compose/logs/promtail compose/logs/validator-ejector compose/logs/lido-dv-exit compose/ps compose/build
 SHELL := /usr/bin/bash
 
 # Set Git user email and name
@@ -15,6 +16,10 @@ efs/mkdir:
 efs/mount:
 	sudo mount -t efs $(aws efs describe-file-systems --query "FileSystems[?Tags[?Key=='Name' && Value=='efs-obol-charon']].FileSystemId" --output text) /home/ssm-user/lido-charon-distributed-validator-node/.charon
 	sudo mount -t efs $(aws efs describe-file-systems --query "FileSystems[?Tags[?Key=='Name' && Value=='efs-obol-exitmessages']].FileSystemId" --output text) /home/ssm-user/lido-charon-distributed-validator-node/.validator-ejector
+
+# update prometheus.yml
+prometheus/update:
+	PROM_REMOTE_WRITE_TOKEN=$(aws secretsmanager get-secret-value --secret-id manual-input-for-obol --query SecretString --output text | jq -r '.PROM_REMOTE_WRITE_TOKEN') | envsubst > prometheus/prometheus.yml.tmpl > prometheus/prometheus.yml
 
 # docker-compose up background
 compose/up:
