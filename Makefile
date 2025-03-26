@@ -19,7 +19,8 @@ efs/mount:
 
 # update prometheus.yml
 prometheus/update:
-	export PROM_REMOTE_WRITE_TOKEN=$(aws secretsmanager get-secret-value --secret-id manual-input-for-obol --query SecretString --output text | jq -r '.PROM_REMOTE_WRITE_TOKEN') | envsubst < prometheus/prometheus.yml.tmpl > prometheus/prometheus.yml
+	export PROM_REMOTE_WRITE_TOKEN=$(aws secretsmanager get-secret-value --secret-id manual-input-for-obol --query SecretString --output text | jq -r '.PROM_REMOTE_WRITE_TOKEN')
+	envsubst < prometheus/prometheus.yml.tmpl > prometheus/prometheus.yml
 
 # docker-compose up background
 compose/up:
