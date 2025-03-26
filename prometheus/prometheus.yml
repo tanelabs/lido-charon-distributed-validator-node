@@ -14,10 +14,10 @@ remote_write:
 scrape_configs:
   - job_name: "nethermind"
     static_configs:
-      - targets: ["nethermind:8008"]
+      - targets: ["fullnode-1-1.fullnode.internal:8008"]
   - job_name: "lighthouse"
     static_configs:
-      - targets: ["lighthouse:5054"]
+      - targets: ["fullnode-1-1.fullnode.internal:5054"]
   - job_name: "charon"
     static_configs:
       - targets: ["charon:3620"]
